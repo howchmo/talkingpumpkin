@@ -1,11 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/models/jack-o-lantern.turbosquid.1133394.fbx" type="PackedScene" id=1]
-[ext_resource path="res://assets/models/pumpkin_head.material" type="Material" id=2]
-[ext_resource path="res://assets/models/pumpkin_stem.material" type="Material" id=3]
-[ext_resource path="res://assets/models/pumpkin_roots.material" type="Material" id=4]
-[ext_resource path="res://assets/models/pumpkin_top.material" type="Material" id=5]
 [ext_resource path="res://assets/scenes/Flicker.gd" type="Script" id=6]
+[ext_resource path="res://assets/models/TalkingPumpkin.glb" type="PackedScene" id=7]
+[ext_resource path="res://assets/models/movemouth.gd" type="Script" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -16,32 +13,9 @@ albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="jack-o-lanternturbosquid1133394" parent="." instance=ExtResource( 1 )]
-
-[node name="head" parent="jack-o-lanternturbosquid1133394/RootNode/Pumpkin" index="0"]
-material/0 = ExtResource( 2 )
-
-[node name="top" parent="jack-o-lanternturbosquid1133394/RootNode/Pumpkin" index="1"]
-material/0 = ExtResource( 5 )
-
-[node name="stem" parent="jack-o-lanternturbosquid1133394/RootNode/Pumpkin" index="2"]
-material/0 = ExtResource( 3 )
-
-[node name="roots" parent="jack-o-lanternturbosquid1133394/RootNode/Pumpkin" index="3"]
-material/0 = ExtResource( 4 )
-
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 3.17637e-21, -8.74227e-08, 4.77038e-09, 0.99851, -0.0545668, 8.72925e-08, -0.0545668, -0.99851, 0, 0.852197, -16.9364 )
 fov = 12.4
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63185, 0 )
-light_energy = 1.325
-light_indirect_energy = 0.758
-light_specular = 1.0
-light_bake_mode = 2
-shadow_bias = 0.0
-script = ExtResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 6.98129e-05, 1, 0, -1, 6.98129e-05, 0, 6.8949, -2.26097 )
@@ -51,9 +25,21 @@ transform = Transform( -10, -8.74228e-07, 3.82137e-14, 0, -4.37114e-07, -10, 8.7
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="TalkingPumpkin2" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TalkingPumpkin2"]
 stream = SubResource( 3 )
 autoplay = true
 bus = "Record"
 
-[editable path="jack-o-lanternturbosquid1133394"]
+[node name="OmniLight" type="OmniLight" parent="TalkingPumpkin2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63185, 0 )
+light_energy = 1.325
+light_indirect_energy = 0.758
+light_specular = 1.0
+light_bake_mode = 2
+shadow_bias = 0.0
+script = ExtResource( 6 )
+
+[editable path="TalkingPumpkin2"]
